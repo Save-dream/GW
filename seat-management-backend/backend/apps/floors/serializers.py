@@ -7,7 +7,7 @@ class FloorSerializer(serializers.ModelSerializer):
     楼层序列化器
     """
     venue_id = serializers.IntegerField(
-        write_only=True,
+        read_only=True,
         label="所属场地ID"
     )
     venue_name = serializers.CharField(
@@ -48,7 +48,8 @@ class FloorSerializer(serializers.ModelSerializer):
         """
         创建楼层
         """
-        venue_id = validated_data.pop('venue_id')
+        # 从请求数据中获取venue_id
+        venue_id = self.context['request'].data.get('venue_id')
         from backend.apps.venues.models import Venue
         venue = Venue.objects.get(id=venue_id)
         floor = Floor.objects.create(venue=venue, **validated_data)
@@ -58,8 +59,10 @@ class FloorSerializer(serializers.ModelSerializer):
         """
         更新楼层
         """
-        if 'venue_id' in validated_data:
-            venue_id = validated_data.pop('venue_id')
+        # 从请求数据中获取venue_id（如果存在）
+        request_data = self.context.get('request', {}).data
+        if request_data and 'venue_id' in request_data:
+            venue_id = request_data.get('venue_id')
             from backend.apps.venues.models import Venue
             instance.venue = Venue.objects.get(id=venue_id)
         

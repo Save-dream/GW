@@ -10,9 +10,31 @@ class Venue(models.Model):
         unique=True,
         verbose_name="场地名称"
     )
+    code = models.CharField(
+        max_length=20,
+        unique=True,
+        verbose_name="场地编码"
+    )
+    city = models.CharField(
+        max_length=50,
+        verbose_name="所在城市"
+    )
     address = models.CharField(
         max_length=200,
-        verbose_name="场地地址"
+        verbose_name="详细地址"
+    )
+    type = models.CharField(
+        max_length=50,
+        default="租赁办公",
+        verbose_name="场地类型"
+    )
+    floorCount = models.IntegerField(
+        default=1,
+        verbose_name="楼层数"
+    )
+    remark = models.TextField(
+        blank=True,
+        verbose_name="备注说明"
     )
     status = models.SmallIntegerField(
         default=1,

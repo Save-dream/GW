@@ -17,29 +17,28 @@
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">楼层名称 *</label>
           <input 
-            v-model="formData.name" 
+            v-model="formData.floorName" 
             type="text" 
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="请输入楼层名称"
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">区域数 *</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">平面图URL</label>
           <input 
-            v-model.number="formData.areaCount" 
-            type="number" 
+            v-model="formData.imageUrl" 
+            type="text" 
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="请输入区域数"
-            min="1"
+            placeholder="请输入平面图URL"
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">工位数 *</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">排序序号</label>
           <input 
-            v-model.number="formData.seatCount" 
+            v-model.number="formData.sortOrder" 
             type="number" 
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="请输入工位数"
+            placeholder="请输入排序序号"
             min="0"
           />
         </div>
@@ -85,21 +84,19 @@ const emit = defineEmits<{
 
 const formData = reactive({
   floorNo: '',
-  name: '',
-  areaCount: 1,
-  seatCount: 0,
-  status: '1',
-  imageUrl: ''
+  floorName: '',
+  imageUrl: '',
+  sortOrder: 0,
+  status: '1'
 })
 
 watch(() => props.floor, (newFloor) => {
   if (newFloor && props.isEdit) {
     formData.floorNo = newFloor.floorNo
-    formData.name = newFloor.name
-    formData.areaCount = newFloor.areaCount
-    formData.seatCount = newFloor.seatCount
+    formData.floorName = newFloor.floorName
+    formData.imageUrl = newFloor.imageUrl || ''
+    formData.sortOrder = newFloor.sortOrder || 0
     formData.status = newFloor.status.toString()
-    formData.imageUrl = newFloor.imageUrl
   }
 }, { immediate: true })
 
@@ -107,11 +104,10 @@ watch(() => props.visible, (newVisible) => {
   if (newVisible && !props.isEdit) {
     Object.assign(formData, {
       floorNo: '',
-      name: '',
-      areaCount: 1,
-      seatCount: 0,
-      status: '1',
-      imageUrl: ''
+      floorName: '',
+      imageUrl: '',
+      sortOrder: 0,
+      status: '1'
     })
   }
 })
@@ -122,9 +118,12 @@ const handleCancel = () => {
 
 const handleSubmit = () => {
   emit('submit', {
-    ...formData,
-    venue_id: props.venueId,
-    status: parseInt(formData.status)
+    floor_no: formData.floorNo,
+    floor_name: formData.floorName,
+    image_url: formData.imageUrl,
+    sort_order: formData.sortOrder,
+    status: parseInt(formData.status),
+    venue_id: props.venueId
   })
 }
 </script>

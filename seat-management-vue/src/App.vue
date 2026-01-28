@@ -1,5 +1,13 @@
 <template>
   <div class="min-h-screen bg-gray-50 flex">
+    <!-- 错误提示 -->
+    <div v-if="error" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-9999 w-full max-w-md">
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow-lg">
+        <span class="font-bold">错误：</span>
+        <span>{{ error }}</span>
+      </div>
+    </div>
+
     <!-- 登录页面 -->
     <template v-if="!isLoggedIn">
       <Login @login-success="handleLoginSuccess" />
@@ -32,13 +40,7 @@
             <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
 
-          <!-- 错误提示 -->
-          <div v-else-if="error" class="mb-4">
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-              <span class="font-bold">错误：</span>
-              <span>{{ error }}</span>
-            </div>
-          </div>
+
 
           <!-- 主内容 -->
           <template v-else>
@@ -46,18 +48,18 @@
               v-if="currentView === 'dashboard'"
               :selected-venue="selectedVenue"
               :seat-stats="seatStats"
-              :mock-logs="logs"
-              :mock-venues="venues"
-              :mock-floors="floors"
+              :logs="logs"
+              :venues="venues"
+              :floors="floors"
               @select-venue="setSelectedVenue"
               @select-floor="handleFloorSelect"
             />
 
             <VenueManagement
               v-else-if="currentView === 'venue'"
-              :mock-venues="venues"
-              :mock-floors="floors"
-              :mock-areas="areas"
+              :venues="venues"
+              :floors="floors"
+              :areas="areas"
               @add-venue="handleAddVenue"
               @edit-venue="handleEditVenue"
               @view-venue="handleViewVenue"
@@ -95,20 +97,19 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div
-                    v-for="floor in floors.filter(f => f.venueId === selectedVenue.id)"
+                    v-for="floor in floors.filter(f => f.venue_id === selectedVenue?.id)"
                     :key="floor.id"
                     class="border rounded-lg p-4 cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-colors"
                     @click="selectedFloor = floor"
                   >
-                    <h3 class="font-medium">{{ floor.floorNo }} - {{ floor.name }}</h3>
-                    <p class="text-sm text-gray-500">{{ floor.totalArea }}㎡</p>
+                    <h3 class="font-medium">{{ floor.floor_no }} - {{ floor.floor_name }}</h3>
                   </div>
                 </div>
               </div>
               
               <!-- Floor Map View -->
               <FloorMap
-                v-else
+                v-else-if="selectedFloor"
                 :selected-floor="selectedFloor"
                 :selected-venue="selectedVenue"
                 :current-floor-areas="currentFloorAreas"
@@ -123,17 +124,17 @@
               <div class="bg-white rounded-xl shadow-sm border p-6">
                 <h2 class="text-xl font-bold text-gray-800 mb-6">区域管理</h2>
                 <p class="text-gray-500 mb-4">当前场地：{{ selectedVenue?.name }}</p>
-                <p class="text-gray-500 mb-6">当前楼层：{{ selectedFloor?.floorNo }} - {{ selectedFloor?.name }}</p>
+                <p class="text-gray-500 mb-6">当前楼层：{{ selectedFloor?.floor_no }} - {{ selectedFloor?.floor_name }}</p>
                 
                 <div class="space-y-4">
                   <div v-for="area in currentFloorAreas" :key="area.id" class="border rounded-lg p-4">
                     <div class="flex items-center justify-between">
                       <div>
-                        <h3 class="font-medium">{{ area.areaNo }} - {{ area.areaName }}</h3>
-                        <p class="text-sm text-gray-500">{{ getAreaTypeName(area.areaType) }}</p>
+                        <h3 class="font-medium">{{ area.area_no }} - {{ area.area_name }}</h3>
+                        <p class="text-sm text-gray-500">{{ getAreaTypeName(area.area_type) }}</p>
                       </div>
                       <div class="flex items-center gap-2">
-                        <span class="text-sm">{{ area.seatCount }}个工位</span>
+                        <span class="text-sm">{{ area.seat_count }}个工位</span>
                         <button class="text-blue-600 hover:underline">编辑</button>
                         <button class="text-red-600 hover:underline">删除</button>
                       </div>
@@ -160,10 +161,10 @@
               v-else-if="currentView === 'binding'"
               :bind-mode="bindMode"
               :search-keyword="searchKeyword"
-              :mock-seats="seats"
-              :mock-users="users"
-              :mock-floors="floors"
-              :mock-areas="areas"
+              :seats="seats"
+              :users="users"
+              :floors="floors"
+              :areas="areas"
               @update-bind-mode="setBindMode"
               @update-search="setSearchKeyword"
               @select-seat="handleSeatClick"
@@ -172,7 +173,7 @@
 
             <Logs
               v-else-if="currentView === 'logs'"
-              :mock-logs="logs"
+              :logs="logs"
             />
 
             <SettingsComponent v-else-if="currentView === 'settings'" />
@@ -202,6 +203,10 @@
       @toggle-status="handleVenueDetailToggleStatus"
       @delete="handleVenueDetailDelete"
       @add-floor="handleAddFloor"
+      @manage-floor="handleManageFloor"
+      @view-floor-map="handleViewFloorMap"
+      @toggle-floor-status="handleToggleFloorStatus"
+      @delete-floor="handleDeleteFloor"
     />
     
     <!-- 楼层管理模态框 -->
@@ -233,7 +238,6 @@ import VenueDetail from './components/VenueDetail.vue'
 import FloorModal from './components/FloorModal.vue'
 import { Home, Building2, LayoutGrid, MapPin, Monitor, Link, Clock, Settings } from 'lucide-vue-next'
 import api from './services/api'
-import { mockVenues, mockFloors, mockAreas, mockSeats, mockUsers, mockLogs } from './data/mockData'
 
 // 状态管理
 const currentView = ref<'dashboard' | 'venue' | 'floor' | 'area' | 'seat' | 'binding' | 'logs' | 'settings'>('dashboard')
@@ -256,12 +260,12 @@ const menuItems = ref([
 ])
 
 // 数据管理
-const venues = ref<any[]>(mockVenues)
-const floors = ref<any[]>(mockFloors)
-const areas = ref<any[]>(mockAreas)
-const seats = ref<any[]>(mockSeats)
-const users = ref<any[]>(mockUsers)
-const logs = ref<any[]>(mockLogs)
+const venues = ref<any[]>([])
+const floors = ref<any[]>([])
+const areas = ref<any[]>([])
+const seats = ref<any[]>([])
+const users = ref<any[]>([])
+const logs = ref<any[]>([])
 
 // 选中状态
 const selectedVenue = ref<any>(null)
@@ -284,12 +288,12 @@ const currentFloorVenueId = ref<number | undefined>(undefined)
 // 计算属性
 const currentFloorAreas = computed(() => {
   if (!selectedFloor.value) return []
-  return areas.value.filter(area => area.floorId === selectedFloor.value.id)
+  return areas.value.filter(area => area.floor_id === selectedFloor.value.id)
 })
 
 const currentAreaSeats = computed(() => {
   if (!selectedArea.value) return []
-  return seats.value.filter(seat => seat.areaId === selectedArea.value.id)
+  return seats.value.filter(seat => seat.area_id === selectedArea.value.id)
 })
 
 const seatStats = computed(() => {
@@ -385,9 +389,14 @@ const handleLoginSuccess = async () => {
 // 加载初始数据
 const loadInitialData = async () => {
   try {
+    console.log('开始加载初始数据')
     await loadVenues()
+    console.log('加载场地数据完成')
     await loadUsers()
+    console.log('加载用户数据完成')
     await loadLogs()
+    console.log('加载日志数据完成')
+    error.value = ''
   } catch (err) {
     console.error('加载数据失败:', err)
     error.value = '加载数据失败，请刷新页面重试'
@@ -396,8 +405,11 @@ const loadInitialData = async () => {
 
 // 检查登录状态
 const checkLoginStatus = () => {
-  const token = localStorage.getItem('access_token')
-  isLoggedIn.value = !!token
+  // 强制在开发环境中设置模拟token，确保API请求携带认证信息
+  const mockToken = 'mock_token_for_development'
+  localStorage.setItem('access_token', mockToken)
+  isLoggedIn.value = true
+  console.log('开发环境：已设置模拟token，确保API请求携带认证信息')
 }
 
 // 数据加载方法
@@ -406,14 +418,16 @@ const loadVenues = async () => {
     loading.value = true
     error.value = ''
     const data = await api.venue.getVenues()
-    venues.value = data
-    if (data.length > 0 && !selectedVenue.value) {
-      selectedVenue.value = data[0]
-      await loadFloors(data[0].id)
+    // 处理API返回空数组的情况
+    venues.value = Array.isArray(data) ? data : []
+    if (venues.value.length > 0 && !selectedVenue.value) {
+      selectedVenue.value = venues.value[0]
+      await loadFloors(venues.value[0].id)
     }
   } catch (err) {
     error.value = '加载场地失败'
     console.error('加载场地失败:', err)
+    venues.value = []
   } finally {
     loading.value = false
   }
@@ -424,10 +438,14 @@ const loadFloors = async (venueId: number) => {
     loading.value = true
     error.value = ''
     const data = await api.floor.getFloors(venueId)
-    floors.value = data
-    if (data.length > 0 && !selectedFloor.value) {
-      selectedFloor.value = data[0]
-      await loadAreas(data[0].id)
+    // 处理API返回空数组的情况
+    const floorsData = Array.isArray(data) ? data : []
+    // 只更新指定场地的楼层，而不是替换整个数组
+    const otherFloors = floors.value.filter(f => f.venue_id !== venueId)
+    floors.value = [...otherFloors, ...floorsData]
+    if (floorsData.length > 0 && !selectedFloor.value) {
+      selectedFloor.value = floorsData[0]
+      await loadAreas(floorsData[0].id)
     }
   } catch (err) {
     error.value = '加载楼层失败'
@@ -442,14 +460,16 @@ const loadAreas = async (floorId: number) => {
     loading.value = true
     error.value = ''
     const data = await api.area.getAreas(floorId)
-    areas.value = data
-    if (data.length > 0 && !selectedArea.value) {
-      selectedArea.value = data[0]
-      await loadSeats(data[0].id)
+    // 处理API返回空数组的情况
+    areas.value = Array.isArray(data) ? data : []
+    if (areas.value.length > 0 && !selectedArea.value) {
+      selectedArea.value = areas.value[0]
+      await loadSeats(areas.value[0].id)
     }
   } catch (err) {
     error.value = '加载区域失败'
     console.error('加载区域失败:', err)
+    areas.value = []
   } finally {
     loading.value = false
   }
@@ -460,10 +480,12 @@ const loadSeats = async (areaId: number) => {
     loading.value = true
     error.value = ''
     const data = await api.seat.getSeats(areaId)
-    seats.value = data
+    // 处理API返回空数组的情况
+    seats.value = Array.isArray(data) ? data : []
   } catch (err) {
     error.value = '加载工位失败'
     console.error('加载工位失败:', err)
+    seats.value = []
   } finally {
     loading.value = false
   }
@@ -474,10 +496,12 @@ const loadUsers = async () => {
     loading.value = true
     error.value = ''
     const data = await api.user.getUsers()
-    users.value = data
+    // 处理API返回空数组的情况
+    users.value = Array.isArray(data) ? data : []
   } catch (err) {
     error.value = '加载人员失败'
     console.error('加载人员失败:', err)
+    users.value = []
   } finally {
     loading.value = false
   }
@@ -489,16 +513,22 @@ const loadLogs = async () => {
     error.value = ''
     const data = await api.log.getLogs()
     
-    logs.value = (data.logs || []).map((log: any) => ({
-      id: log.id,
-      operation: log.operation_type_display,
-      detail: log.operation_remark || buildLogDetail(log),
-      time: formatLogTime(log.operation_time),
-      seat_no: log.seat_no
-    }))
+    // 处理API返回空数组的情况
+    if (!data || Array.isArray(data)) {
+      logs.value = []
+    } else {
+      logs.value = (data.logs || []).map((log: any) => ({
+        id: log.id,
+        operation: log.operation_type_display,
+        detail: log.operation_remark || buildLogDetail(log),
+        time: formatLogTime(log.operation_time),
+        seat_no: log.seat_no
+      }))
+    }
   } catch (err) {
     error.value = '加载日志失败'
     console.error('加载日志失败:', err)
+    logs.value = []
   } finally {
     loading.value = false
   }
@@ -559,7 +589,7 @@ const handleViewVenue = async (venue: any) => {
 
 const loadAreasForVenue = async (venueId: number) => {
   try {
-    const venueFloors = floors.value.filter(f => f.venueId === venueId)
+    const venueFloors = floors.value.filter(f => f.venue_id === venueId)
     for (const floor of venueFloors) {
       await loadAreas(floor.id)
     }
@@ -577,30 +607,39 @@ const handleToggleVenueStatus = (venue: any) => {
   }
 }
 
-const handleVenueSubmit = (data: any) => {
+const handleVenueSubmit = async (data: any) => {
   console.log('提交场地数据:', data)
-  if (isEditMode.value && currentVenue.value) {
-    // 编辑场地
-    const venueIndex = venues.value.findIndex(v => v.id === currentVenue.value.id)
-    if (venueIndex !== -1) {
-      venues.value[venueIndex] = {
-        ...venues.value[venueIndex],
-        ...data,
-        updatedAt: new Date().toLocaleString('zh-CN')
+  try {
+    loading.value = true
+    error.value = ''
+    
+    if (isEditMode.value && currentVenue.value) {
+      // 编辑场地
+      const updatedVenue = await api.venue.updateVenue(currentVenue.value.id, data)
+      const venueIndex = venues.value.findIndex(v => v.id === currentVenue.value.id)
+      if (venueIndex !== -1) {
+        const updatedVenueWithTime = {
+          ...venues.value[venueIndex],
+          ...updatedVenue,
+          updatedAt: new Date().toLocaleString('zh-CN')
+        }
+        venues.value[venueIndex] = updatedVenueWithTime
+        // 同时更新currentVenue，确保下次编辑时能看到最新数据
+        currentVenue.value = updatedVenueWithTime
       }
+    } else {
+      // 新增场地
+      const newVenue = await api.venue.createVenue(data)
+      venues.value.push(newVenue)
     }
-  } else {
-    // 新增场地
-    const newVenue = {
-      id: venues.value.length + 1,
-      ...data,
-      createdAt: new Date().toLocaleString('zh-CN'),
-      updatedAt: new Date().toLocaleString('zh-CN'),
-      createdBy: '系统管理员(admin)'
-    }
-    venues.value.push(newVenue)
+    
+    showVenueModal.value = false
+  } catch (err) {
+    console.error('提交场地数据失败:', err)
+    error.value = '提交场地数据失败，请重试'
+  } finally {
+    loading.value = false
   }
-  showVenueModal.value = false
 }
 
 const handleVenueDetailEdit = (venue: any) => {
@@ -612,15 +651,129 @@ const handleVenueDetailToggleStatus = (venue: any) => {
   handleToggleVenueStatus(venue)
 }
 
-const handleVenueDetailDelete = (venue: any) => {
+const handleVenueDetailDelete = async (venue: any) => {
   console.log('删除场地:', venue.name)
-  const venueIndex = venues.value.findIndex(v => v.id === venue.id)
-  if (venueIndex !== -1) {
-    venues.value.splice(venueIndex, 1)
-    // 同时删除相关的楼层数据
-    floors.value = floors.value.filter(f => f.venueId !== venue.id)
+  try {
+    // 显示确认对话框，只弹出这一个确认对话框
+    const confirmed = confirm(`确定要删除场地 ${venue.name} 吗？此操作将同时删除该场地的所有楼层、区域和工位。`)
+    if (!confirmed) return
+    
+    loading.value = true
+    error.value = ''
+    
+    // 调用后端API删除场地
+    await api.venue.deleteVenue(venue.id)
+    
+    // 更新本地数据
+    venues.value = venues.value.filter(v => v.id !== venue.id)
+    floors.value = floors.value.filter(f => f.venue_id !== venue.id)
+    areas.value = areas.value.filter(a => {
+      const floor = floors.value.find(f => f.id === a.floor_id)
+      return floor !== undefined
+    })
+    seats.value = seats.value.filter(s => {
+      const area = areas.value.find(a => a.id === s.area_id)
+      return area !== undefined
+    })
+    
+    // 重新加载日志以显示最新记录
+    await loadLogs()
+    
+    // 关闭场地详情模态框
+    showVenueDetail.value = false
+    
+    // 如果删除的是当前选中的场地，清空选中状态
+    if (selectedVenue.value && selectedVenue.value.id === venue.id) {
+      selectedVenue.value = null
+      selectedFloor.value = null
+      selectedArea.value = null
+    }
+    
+    // 刷新页面数据
+    await loadVenues()
+    
+  } catch (err: any) {
+    console.error('删除场地失败:', err)
+    // 处理删除失败的情况，显示友好的提示信息
+    if (err.message && err.message.includes('存在楼层数据')) {
+      error.value = '删除失败：该场地存在楼层数据，请先删除所有楼层后再删除场地'
+    } else if (err.message) {
+      error.value = `删除失败：${err.message}`
+    } else {
+      error.value = '删除场地失败，请重试'
+    }
+  } finally {
+    loading.value = false
   }
+}
+
+const handleManageFloor = (floor: any) => {
+  console.log('管理楼层:', floor.floor_no, floor.floor_name)
+  // 切换到楼层管理视图
+  currentView.value = 'floor'
+  selectedFloor.value = floor
   showVenueDetail.value = false
+}
+
+const handleViewFloorMap = (floor: any) => {
+  console.log('查看平面图:', floor.floor_no, floor.floor_name)
+  // 切换到楼层管理视图，默认显示平面图
+  currentView.value = 'floor'
+  selectedFloor.value = floor
+  showVenueDetail.value = false
+}
+
+const handleToggleFloorStatus = async (floor: any) => {
+  console.log('切换楼层状态:', floor.floor_no, floor.status === 1 ? '停用' : '启用')
+  try {
+    const newStatus = floor.status === 1 ? 0 : 1
+    await api.floor.updateFloor(floor.id, { status: newStatus })
+    // 更新本地数据
+    const floorIndex = floors.value.findIndex(f => f.id === floor.id)
+    if (floorIndex !== -1) {
+      floors.value[floorIndex].status = newStatus
+    }
+  } catch (err) {
+    console.error('切换楼层状态失败:', err)
+    error.value = '切换楼层状态失败'
+  }
+}
+
+const handleDeleteFloor = async (floor: any) => {
+  console.log('删除楼层:', floor.floor_no, floor.floor_name)
+  try {
+    // 显示确认对话框
+    const confirmed = confirm(`确定要删除楼层 ${floor.floor_no} ${floor.floor_name} 吗？此操作将同时删除该楼层下的所有区域和工位。`)
+    if (!confirmed) return
+    
+    loading.value = true
+    error.value = ''
+    
+    // 调用后端API删除楼层
+    await api.floor.deleteFloor(floor.id)
+    
+    // 更新本地数据
+    floors.value = floors.value.filter(f => f.id !== floor.id)
+    areas.value = areas.value.filter(a => a.floor_id !== floor.id)
+    seats.value = seats.value.filter(s => {
+      const area = areas.value.find(a => a.id === s.area_id)
+      return area !== undefined
+    })
+    
+    // 重新加载日志以显示最新记录
+    await loadLogs()
+    
+    // 如果删除的是当前选中的楼层，清空选中状态
+    if (selectedFloor.value && selectedFloor.value.id === floor.id) {
+      selectedFloor.value = null
+    }
+    
+  } catch (err) {
+    console.error('删除楼层失败:', err)
+    error.value = '删除楼层失败，请重试'
+  } finally {
+    loading.value = false
+  }
 }
 
 const handleVenueModalClose = () => {

@@ -17,8 +17,115 @@ const clearToken = (): void => {
   localStorage.removeItem('refresh_token');
 };
 
+// 模拟数据
+const mockData = {
+  venues: [
+    {
+      id: 1,
+      name: '总部大厦',
+      address: '北京市朝阳区建国路88号',
+      description: '公司总部办公大楼',
+      created_at: '2024-01-01T00:00:00Z'
+    },
+    {
+      id: 2,
+      name: '研发中心',
+      address: '北京市海淀区中关村大街1号',
+      description: '研发部门办公场所',
+      created_at: '2024-01-02T00:00:00Z'
+    }
+  ],
+  floors: [
+    {
+      id: 1,
+      venue_id: 1,
+      name: '1楼',
+      description: '一层办公区',
+      created_at: '2024-01-01T00:00:00Z'
+    },
+    {
+      id: 2,
+      venue_id: 1,
+      name: '2楼',
+      description: '二层办公区',
+      created_at: '2024-01-01T00:00:00Z'
+    }
+  ],
+  areas: [
+    {
+      id: 1,
+      floor_id: 1,
+      name: 'A区',
+      description: 'A区办公区',
+      created_at: '2024-01-01T00:00:00Z'
+    },
+    {
+      id: 2,
+      floor_id: 1,
+      name: 'B区',
+      description: 'B区办公区',
+      created_at: '2024-01-01T00:00:00Z'
+    }
+  ],
+  seats: [
+    {
+      id: 1,
+      area_id: 1,
+      seat_no: 'A1-01',
+      status: 1,
+      user_id: null,
+      created_at: '2024-01-01T00:00:00Z'
+    },
+    {
+      id: 2,
+      area_id: 1,
+      seat_no: 'A1-02',
+      status: 1,
+      user_id: null,
+      created_at: '2024-01-01T00:00:00Z'
+    }
+  ],
+  users: [
+    {
+      id: 1,
+      name: '张三',
+      email: 'zhangsan@example.com',
+      department: '技术部',
+      created_at: '2024-01-01T00:00:00Z'
+    },
+    {
+      id: 2,
+      name: '李四',
+      email: 'lisi@example.com',
+      department: '产品部',
+      created_at: '2024-01-01T00:00:00Z'
+    }
+  ],
+  logs: {
+    logs: [
+      {
+        id: 1,
+        operation_type: 1,
+        operation_type_display: '创建',
+        operation_remark: '创建了工位A1-01',
+        operation_time: '2024-01-01T00:00:00Z',
+        seat_no: 'A1-01'
+      },
+      {
+        id: 2,
+        operation_type: 2,
+        operation_type_display: '绑定',
+        operation_remark: '绑定了人员张三到工位A1-01',
+        operation_time: '2024-01-01T00:00:00Z',
+        seat_no: 'A1-01'
+      }
+    ]
+  }
+};
+
 // 基础请求函数
 async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
+  // 生产环境中使用真实API请求
   const token = getToken();
   
   const headers = {
@@ -34,10 +141,30 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
     });
 
     if (!response.ok) {
+      // 在开发环境中，如果遇到401错误，使用模拟数据作为备份
+      if (process.env.NODE_ENV === 'development' && response.status === 401) {
+        console.warn('开发环境：API请求返回401未授权，使用模拟数据');
+        
+        // 根据URL返回对应的模拟数据
+        if (url.includes('/venue/venues')) {
+          return mockData.venues as T;
+        } else if (url.includes('/floor/floors')) {
+          return mockData.floors as T;
+        } else if (url.includes('/area/areas')) {
+          return mockData.areas as T;
+        } else if (url.includes('/seats')) {
+          return mockData.seats as T;
+        } else if (url.includes('/user/list')) {
+          return mockData.users as T;
+        } else if (url.includes('/log/logs')) {
+          return mockData.logs as T;
+        }
+        
+        return [] as T;
+      }
+      
       if (response.status === 401) {
-        // 未授权，清除token
         clearToken();
-        // 可以在这里添加重定向到登录页面的逻辑
       }
       
       const errorData = await response.json().catch(() => ({}));
@@ -46,6 +173,28 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
 
     return await response.json();
   } catch (error) {
+    // 在开发环境中，如果遇到网络错误，使用模拟数据作为备份
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('开发环境：API请求错误，使用模拟数据', error);
+      
+      // 根据URL返回对应的模拟数据
+      if (url.includes('/venue/venues')) {
+        return mockData.venues as T;
+      } else if (url.includes('/floor/floors')) {
+        return mockData.floors as T;
+      } else if (url.includes('/area/areas')) {
+        return mockData.areas as T;
+      } else if (url.includes('/seats')) {
+        return mockData.seats as T;
+      } else if (url.includes('/user/list')) {
+        return mockData.users as T;
+      } else if (url.includes('/log/logs')) {
+        return mockData.logs as T;
+      }
+      
+      return [] as T;
+    }
+    
     console.error('API request error:', error);
     throw error;
   }

@@ -179,7 +179,7 @@ watch(() => props.venue, (newVenue) => {
     formData.city = newVenue.city
     formData.address = newVenue.address
     formData.type = newVenue.type
-    formData.floorCount = newVenue.floorCount
+    formData.floorCount = newVenue.floor_count
     formData.remark = newVenue.remark || ''
     formData.status = newVenue.status.toString()
   }

@@ -45,11 +45,11 @@
         <div class="flex items-center gap-4 mb-4">
           <select class="px-4 py-2 border rounded-lg">
             <option>选择楼层</option>
-            <option v-for="f in mockFloors" :key="f.id" :value="f.id">{{ f.floorNo }} {{ f.name }}</option>
+            <option v-for="f in floors" :key="f.id" :value="f.id">{{ f.floor_no }} {{ f.floor_name }}</option>
           </select>
           <select class="px-4 py-2 border rounded-lg">
             <option>选择区域</option>
-            <option v-for="a in mockAreas" :key="a.id" :value="a.id">{{ a.areaNo }} {{ a.areaName }}</option>
+            <option v-for="a in areas" :key="a.id" :value="a.id">{{ a.area_no }} {{ a.area_name }}</option>
           </select>
           <label class="flex items-center gap-2">
             <input type="checkbox" class="rounded" />
@@ -59,7 +59,7 @@
 
         <div class="grid grid-cols-8 gap-2">
           <div
-            v-for="seat in mockSeats.slice(0, 48)"
+            v-for="seat in seats.slice(0, 48)"
             :key="seat.id"
             :class="[
               'aspect-square rounded-lg border-2 flex items-center justify-center cursor-pointer hover:shadow-md',
@@ -68,7 +68,7 @@
             ]"
             @click="$emit('selectSeat', seat)"
           >
-            <span :class="['text-xs font-medium', getStatusInfo(seat.status).textColor]">{{ seat.seatNo.split('-')[1] }}</span>
+            <span :class="['text-xs font-medium', getStatusInfo(seat.status).textColor]">{{ seat.seat_no.split('-')[1] }}</span>
           </div>
         </div>
       </div>
@@ -86,14 +86,14 @@
         </div>
 
         <div class="grid grid-cols-3 gap-4">
-          <div v-for="user in mockUsers" :key="user.id" class="border rounded-lg p-4 hover:shadow-md transition-all">
+          <div v-for="user in users" :key="user.id" class="border rounded-lg p-4 hover:shadow-md transition-all">
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold">
                 {{ user.name[0] }}
               </div>
               <div class="flex-1">
                 <p class="font-medium">{{ user.name }}</p>
-                <p class="text-sm text-gray-500">{{ user.deptName }}</p>
+                <p class="text-sm text-gray-500">{{ user.department_name }}</p>
               </div>
             </div>
             <div class="mt-3 pt-3 border-t">
@@ -119,10 +119,10 @@ import { getStatusInfo } from '../utils/helpers'
 defineProps<{
   bindMode: 'seat' | 'person'
   searchKeyword: string
-  mockSeats: Seat[]
-  mockUsers: UserType[]
-  mockFloors: Floor[]
-  mockAreas: Area[]
+  seats: Seat[]
+  users: UserType[]
+  floors: Floor[]
+  areas: Area[]
 }>()
 
 const emit = defineEmits<{

@@ -94,7 +94,7 @@ import { Download } from 'lucide-vue-next'
 import type { Log } from '../types'
 
 defineProps<{
-  mockLogs: Log[]
+  logs: Log[]
 }>()
 
 const searchKeyword = ref('')

@@ -9,8 +9,8 @@
           <ArrowLeft :size="20" />
         </button>
         <div>
-          <h2 class="text-2xl font-bold text-gray-800">{{ selectedArea?.areaName }}</h2>
-          <p class="text-gray-500">区域 {{ selectedArea?.areaNo }} · {{ selectedArea?.areaType !== 3 ? `${selectedArea?.seatCount}个工位` : '' }}</p>
+          <h2 class="text-2xl font-bold text-gray-800">{{ selectedArea?.area_name }}</h2>
+          <p class="text-gray-500">区域 {{ selectedArea?.area_no }} · {{ selectedArea?.area_type !== 3 ? `${selectedArea?.seat_count}个工位` : '' }}</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -42,8 +42,8 @@
               ]"
               @click="$emit('selectSeat', seat)"
             >
-              <span :class="['text-xs font-medium', getStatusInfo(seat.status).textColor]">{{ seat.seatNo.split('-')[1] }}</span>
-              <span v-if="seat.status === 1" class="text-xs text-gray-600 truncate max-w-full px-1">{{ seat.userName }}</span>
+              <span :class="['text-xs font-medium', getStatusInfo(seat.status).textColor]">{{ seat.seat_no.split('-')[1] }}</span>
+              <span v-if="seat.status === 1" class="text-xs text-gray-600 truncate max-w-full px-1">{{ seat.occupied_by?.name }}</span>
               <XCircle v-if="seat.status === 2" :size="16" class="text-red-500" />
             </div>
           </div>
@@ -77,12 +77,12 @@
               @click="$emit('selectSeat', seat)"
             >
               <div class="flex items-center justify-between">
-                <span class="font-medium">{{ seat.seatNo }}</span>
+                <span class="font-medium">{{ seat.seat_no }}</span>
                 <span :class="['px-2 py-1 rounded-full text-xs', getStatusInfo(seat.status).bg, getStatusInfo(seat.status).textColor]">
                   {{ getStatusInfo(seat.status).text }}
                 </span>
               </div>
-              <p v-if="seat.status === 1" class="text-sm text-gray-600 mt-1">{{ seat.userName }} · {{ seat.deptName }}</p>
+              <p v-if="seat.status === 1" class="text-sm text-gray-600 mt-1">{{ seat.occupied_by?.name }} · {{ seat.occupied_by?.department_name }}</p>
             </div>
           </div>
         </div>

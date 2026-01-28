@@ -8,37 +8,37 @@ export interface Venue {
 
 export interface Floor {
   id: number
-  venueId: number
-  name: string
-  floorNo: string
-  imageUrl: string
+  venue_id: number
+  venue_name?: string
+  floor_name: string
+  floor_no: string
+  image_url?: string
+  sort_order: number
   status: number
-  areaCount: number
-  seatCount: number
 }
 
 export interface Area {
   id: number
-  floorId: number
-  areaNo: string
-  areaName: string
-  areaType: number
-  seatCount: number
-  deptName: string
+  floor_id: number
+  area_no: string
+  area_name: string
+  area_type: number
+  seat_count: number
+  dept_name: string
   position: { top: number; left: number; width: number; height: number }
   status: number
 }
 
 export interface Seat {
   id: number
-  areaId: number
-  seatNo: string
+  area_id: number
+  seat_no: string
   status: number // 0:闲置 1:占用 2:维修 3:停用
-  userId?: string
-  userName?: string
-  deptName?: string
+  user_id?: string
+  user_name?: string
+  dept_name?: string
   position: { row: number; col: number }
-  bindType: number // 0:未绑定 1:主工位 2:额外绑定
+  bind_type: number // 0:未绑定 1:主工位 2:额外绑定
 }
 
 export interface User {

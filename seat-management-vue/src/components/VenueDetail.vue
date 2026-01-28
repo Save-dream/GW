@@ -103,13 +103,14 @@
               class="bg-white rounded-lg p-4 border flex items-center justify-between"
             >
               <div>
-                <h5 class="font-medium">{{ floor.floorNo }} {{ floor.name }}</h5>
-                <p class="text-sm text-gray-500">区域数：{{ floor.areaCount }} | 工位数：{{ floor.seatCount }} | 状态：{{ floor.status === 1 ? '启用' : '停用' }}</p>
+                <h5 class="font-medium">{{ floor.floor_no }} {{ floor.floor_name }}</h5>
+                <p class="text-sm text-gray-500">状态：{{ floor.status === 1 ? '启用' : '停用' }}</p>
               </div>
               <div class="flex items-center gap-2">
-                <button class="px-3 py-1 border rounded-lg text-sm hover:bg-gray-50">管理楼层</button>
-                <button class="px-3 py-1 border rounded-lg text-sm hover:bg-gray-50">查看平面图</button>
-                <button class="px-3 py-1 border rounded-lg text-sm hover:bg-gray-50">{{ floor.status === 1 ? '停用' : '启用' }}</button>
+                <button @click="emit('manage-floor', floor)" class="px-3 py-1 border rounded-lg text-sm hover:bg-gray-50">管理楼层</button>
+                <button @click="emit('view-floor-map', floor)" class="px-3 py-1 border rounded-lg text-sm hover:bg-gray-50">查看平面图</button>
+                <button @click="emit('toggle-floor-status', floor)" class="px-3 py-1 border rounded-lg text-sm hover:bg-gray-50">{{ floor.status === 1 ? '停用' : '启用' }}</button>
+                <button @click="emit('delete-floor', floor)" class="px-3 py-1 border border-red-500 text-red-500 rounded-lg text-sm hover:bg-red-50">删除</button>
               </div>
             </div>
             <div v-if="getVenueFloors().length === 0" class="text-center py-10 text-gray-500">
@@ -194,11 +195,9 @@
                 class="flex items-center justify-between bg-white rounded-lg p-4 border"
               >
                 <div class="flex items-center gap-4">
-                  <span class="font-medium">{{ floor.floorNo }} {{ floor.name }}</span>
-                  <span class="text-sm text-gray-500">{{ floor.areaCount }} 个区域</span>
+                  <span class="font-medium">{{ floor.floor_no }} {{ floor.floor_name }}</span>
                 </div>
                 <div class="flex items-center gap-6">
-                  <span class="text-sm">工位：{{ floor.seatCount }}</span>
                   <span class="text-sm text-gray-500">状态：{{ floor.status === 1 ? '启用' : '停用' }}</span>
                 </div>
               </div>
@@ -231,6 +230,9 @@ const emit = defineEmits<{
   (e: 'toggle-status', venue: Venue): void
   (e: 'delete', venue: Venue): void
   (e: 'add-floor', venue: Venue): void
+  (e: 'manage-floor', floor: Floor): void
+  (e: 'view-floor-map', floor: Floor): void
+  (e: 'toggle-floor-status', floor: Floor): void
 }>()
 
 const activeTab = ref('basic')
@@ -243,11 +245,15 @@ const tabs = [
 
 const getVenueFloors = () => {
   if (!props.venue) return []
-  return props.floors.filter(floor => floor.venueId === props.venue?.id)
+  return props.floors.filter(floor => floor.venue_id === props.venue?.id)
 }
 
 const getAreaCount = () => {
-  return getVenueFloors().reduce((sum, floor) => sum + floor.areaCount, 0)
+  if (!props.venue) return 0
+  return props.areas.filter(area => {
+    const floor = getVenueFloors().find(f => f.id === area.floor_id)
+    return floor !== undefined
+  }).length
 }
 
 const getOccupiedSeats = () => {
@@ -269,7 +275,10 @@ const getOccupancyRate = () => {
 }
 
 const getTotalSeats = () => {
-  return getVenueFloors().reduce((sum, floor) => sum + floor.seatCount, 0)
+  if (!props.venue) return 0
+  const venueFloorIds = getVenueFloors().map(f => f.id)
+  return props.areas.filter(area => venueFloorIds.includes(area.floor_id))
+    .reduce((sum, area) => sum + area.seat_count, 0)
 }
 
 const handleClose = () => {
@@ -290,9 +299,7 @@ const handleToggleStatus = () => {
 
 const handleDelete = () => {
   if (props.venue) {
-    if (confirm(`确定要删除场地"${props.venue.name}"吗？此操作不可恢复！`)) {
-      emit('delete', props.venue)
-    }
+    emit('delete', props.venue)
   }
 }
 

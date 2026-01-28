@@ -12,8 +12,8 @@
             :value="selectedVenue?.id || ''"
             @change="handleVenueSelect"
           >
-          <option v-for="v in mockVenues" :key="v.id" :value="v.id">{{ v.name }}</option>
-        </select>
+            <option v-for="v in venues" :key="v.id" :value="v.id">{{ v.name }}</option>
+          </select>
       </div>
     </div>
 
@@ -61,18 +61,16 @@
       <h3 class="text-lg font-semibold mb-4">楼层概览 - {{ selectedVenue?.name || '无' }}</h3>
       <div class="grid grid-cols-5 gap-4">
         <div
-          v-for="floor in mockFloors.filter(f => f.venueId === selectedVenue?.id)"
+          v-for="floor in floors.filter(f => f.venue_id === selectedVenue?.id)"
           :key="floor.id"
           class="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
           @click="$emit('selectFloor', floor)"
         >
           <div class="text-center">
             <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span class="text-2xl font-bold text-blue-600">{{ floor.floorNo }}</span>
+              <span class="text-2xl font-bold text-blue-600">{{ floor.floor_no }}</span>
             </div>
-            <p class="font-medium">{{ floor.name }}</p>
-            <p class="text-sm text-gray-500 mt-1">{{ floor.areaCount || 0 }}个区域</p>
-            <p class="text-sm text-gray-500">{{ floor.seatCount || 0 }}个工位</p>
+            <p class="font-medium">{{ floor.floor_name }}</p>
           </div>
         </div>
       </div>
@@ -82,24 +80,24 @@
       <h3 class="text-lg font-semibold mb-4">最近操作</h3>
       <div class="space-y-3">
         <div
-          v-for="log in mockLogs.slice(0, 5)"
-          :key="log.id"
-          class="flex items-center justify-between py-3 border-b last:border-0"
-        >
-          <div class="flex items-center gap-4">
-            <span :class="[
-              'px-3 py-2 rounded-full text-sm',
-              log.operation === '绑定人员' ? 'bg-green-100 text-green-700' :
-              log.operation === '更换工位' ? 'bg-blue-100 text-blue-700' :
-              log.operation === '解绑人员' ? 'bg-yellow-100 text-yellow-700' :
-              'bg-gray-100 text-gray-700'
-            ]">
-              {{ log.operation }}
-            </span>
-            <span>{{ log.detail }}</span>
+            v-for="log in logs.slice(0, 5)"
+            :key="log.id"
+            class="flex items-center justify-between py-3 border-b last:border-0"
+          >
+            <div class="flex items-center gap-4">
+              <span :class="[
+                'px-3 py-2 rounded-full text-sm',
+                log.operation === '绑定人员' ? 'bg-green-100 text-green-700' :
+                log.operation === '更换工位' ? 'bg-blue-100 text-blue-700' :
+                log.operation === '解绑人员' ? 'bg-yellow-100 text-yellow-700' :
+                'bg-gray-100 text-gray-700'
+              ]">
+                {{ log.operation }}
+              </span>
+              <span>{{ log.detail }}</span>
+            </div>
+            <span class="text-sm text-gray-500">{{ log.time }}</span>
           </div>
-          <span class="text-sm text-gray-500">{{ log.time }}</span>
-        </div>
       </div>
     </div>
   </div>
@@ -112,9 +110,9 @@ import type { Venue, Floor } from '../types'
 const props = defineProps<{
   selectedVenue: Venue | null
   seatStats: { total: number; occupied: number; empty: number; maintenance: number }
-  mockLogs: any[]
-  mockVenues: Venue[]
-  mockFloors: Floor[]
+  logs: any[]
+  venues: Venue[]
+  floors: Floor[]
 }>()
 
 const emit = defineEmits<{
@@ -125,7 +123,7 @@ const emit = defineEmits<{
 const handleVenueSelect = (event: Event) => {
   const target = event.target as HTMLSelectElement
   const venueId = Number(target.value)
-  const venue = props.mockVenues.find(v => v.id === venueId)
+  const venue = props.venues.find(v => v.id === venueId)
   if (venue) {
     emit('selectVenue', venue)
   }
