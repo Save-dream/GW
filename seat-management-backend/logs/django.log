@@ -3188,3 +3188,313 @@ WARNING 2026-01-28 16:53:42,567 log Unauthorized: /api/admin/user/list
 WARNING 2026-01-28 16:53:42,567 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
 WARNING 2026-01-28 16:53:42,573 log Unauthorized: /api/admin/log/logs
 WARNING 2026-01-28 16:53:42,574 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:39,016 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 16:59:39,018 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:39,023 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 16:59:39,023 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:39,027 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 16:59:39,028 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:39,031 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 16:59:39,031 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:39,043 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 16:59:39,043 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:39,047 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 16:59:39,048 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:48,763 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 16:59:48,764 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:48,797 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 16:59:48,798 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:48,804 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 16:59:48,805 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:48,814 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 16:59:48,815 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:48,820 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 16:59:48,821 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 16:59:48,826 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 16:59:48,827 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:03:16,737 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:03:16,738 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:00,972 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:05:00,973 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:00,990 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:05:00,991 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:00,995 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:05:00,995 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:00,999 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:05:01,000 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,006 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:05:01,007 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,012 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:05:01,012 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,199 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:05:01,199 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,216 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:05:01,218 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,232 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:05:01,233 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,239 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:05:01,240 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,248 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:05:01,249 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,256 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:05:01,257 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,403 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:05:01,405 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,413 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:05:01,414 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,419 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:05:01,421 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,430 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:05:01,431 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,439 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:05:01,441 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:05:01,449 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:05:01,449 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+INFO 2026-01-28 17:08:55,653 basehttp "POST /api/auth/login HTTP/1.1" 200 653
+WARNING 2026-01-28 17:10:57,335 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:10:57,335 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:10:57,338 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:10:57,338 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:10:57,342 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:10:57,343 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:10:57,347 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:10:57,348 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:10:57,356 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:10:57,356 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:10:57,366 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:10:57,367 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+INFO 2026-01-28 17:11:16,152 autoreload Watching for file changes with StatReloader
+WARNING 2026-01-28 17:11:23,885 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:11:23,886 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,888 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:11:23,888 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,890 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:11:23,890 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,892 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:11:23,892 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,893 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:11:23,893 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,895 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:11:23,895 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,896 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:11:23,897 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,898 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:11:23,898 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,905 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:11:23,906 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,912 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:11:23,913 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,916 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:11:23,917 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:23,921 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:11:23,922 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:42,609 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:11:42,610 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:42,639 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:11:42,641 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:42,646 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:11:42,647 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:42,652 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:11:42,655 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:42,662 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:11:42,663 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:11:42,675 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:11:42,676 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:12:53,699 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:12:53,699 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+INFO 2026-01-28 17:13:18,463 basehttp "POST /api/auth/login HTTP/1.1" 200 653
+INFO 2026-01-28 17:13:48,479 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+WARNING 2026-01-28 17:14:07,647 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:14:07,648 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:07,672 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:14:07,674 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:07,679 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:14:07,680 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:07,684 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:14:07,685 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:07,696 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:14:07,697 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:07,703 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:14:07,704 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:08,547 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:14:08,547 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:08,574 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:14:08,575 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:08,588 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:14:08,589 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:08,593 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:14:08,594 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:08,600 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:14:08,600 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:08,606 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:14:08,606 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:09,407 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:14:09,408 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:09,420 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:14:09,420 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:09,429 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:14:09,430 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:09,438 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:14:09,439 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:09,454 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:14:09,457 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:09,466 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:14:09,468 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:26,055 log Unauthorized: /api/admin/venue/venues
+WARNING 2026-01-28 17:14:26,055 basehttp "GET /api/admin/venue/venues HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:26,073 log Unauthorized: /api/admin/floor/floors
+WARNING 2026-01-28 17:14:26,075 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:26,090 log Unauthorized: /api/admin/area/areas
+WARNING 2026-01-28 17:14:26,091 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:26,095 log Unauthorized: /api/admin/seats
+WARNING 2026-01-28 17:14:26,096 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:26,106 log Unauthorized: /api/admin/user/list
+WARNING 2026-01-28 17:14:26,107 basehttp "GET /api/admin/user/list HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:26,114 log Unauthorized: /api/admin/log/logs
+WARNING 2026-01-28 17:14:26,114 basehttp "GET /api/admin/log/logs HTTP/1.1" 401 179
+WARNING 2026-01-28 17:14:37,256 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:14:37,257 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:14:37,276 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:14:37,289 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:14:37,327 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:14:37,340 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:14:37,353 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:14:50,001 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:14:50,001 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:14:50,060 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:14:50,075 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:14:50,100 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:14:50,116 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:14:50,134 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:14:59,427 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:14:59,427 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:14:59,476 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:14:59,493 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:14:59,541 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:14:59,556 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:14:59,569 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:06,878 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:06,879 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:06,902 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:15:06,933 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:15:06,964 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:15:06,978 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:06,992 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:08,952 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:08,953 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:08,968 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:08,980 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:13,626 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:13,627 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:13,656 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:13,688 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:14,880 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:14,880 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:14,901 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:14,924 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:15,732 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:15,732 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:15,753 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:15,764 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:16,295 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:16,296 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:16,311 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:16,324 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:16,848 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:16,849 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:16,880 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:16,889 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:15:19,613 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:15:19,614 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:15:19,661 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:15:19,674 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:16:23,054 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:16:23,054 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:16:23,099 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:16:23,124 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:19:06,506 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:19:06,507 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:19:06,564 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:19:06,581 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:19:17,721 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:19:17,722 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:19:17,753 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:19:17,774 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:19:46,875 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:19:46,876 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:19:46,910 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:19:46,935 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+INFO 2026-01-28 17:19:54,688 basehttp "OPTIONS /api/auth/login HTTP/1.1" 200 0
+INFO 2026-01-28 17:19:54,932 basehttp "POST /api/auth/login HTTP/1.1" 200 653
+WARNING 2026-01-28 17:19:54,942 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:19:54,943 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:19:54,963 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:19:54,983 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:19:58,415 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:19:58,416 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:19:58,470 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:19:58,485 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:20:07,819 log Unauthorized: /api/auth/login
+WARNING 2026-01-28 17:20:07,820 basehttp "POST /api/auth/login HTTP/1.1" 401 49
+INFO 2026-01-28 17:20:11,023 basehttp "POST /api/auth/login HTTP/1.1" 200 660
+INFO 2026-01-28 17:20:11,041 basehttp "GET /api/admin/venue/venues HTTP/1.1" 200 1590
+INFO 2026-01-28 17:20:11,048 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:20:11,057 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:20:11,080 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:20:11,091 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:20:11,099 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:20:15,434 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:20:15,434 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:20:15,485 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:20:15,506 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+WARNING 2026-01-28 17:21:27,526 log Forbidden: /api/admin/venue/venues
+WARNING 2026-01-28 17:21:27,527 basehttp "GET /api/admin/venue/venues HTTP/1.1" 403 67
+INFO 2026-01-28 17:25:42,148 basehttp "GET /api/admin/venue/venues HTTP/1.1" 200 1590
+INFO 2026-01-28 17:25:42,158 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:25:42,168 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:25:42,198 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:25:42,206 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:25:42,216 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+INFO 2026-01-28 17:25:44,304 basehttp "GET /api/admin/venue/venues HTTP/1.1" 200 1590
+INFO 2026-01-28 17:25:44,348 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:25:44,368 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:25:44,396 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:25:44,411 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:25:44,423 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+INFO 2026-01-28 17:25:50,239 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:25:50,255 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:26:42,421 basehttp "GET /api/admin/venue/venues HTTP/1.1" 200 1590
+INFO 2026-01-28 17:26:52,730 basehttp "GET /api/admin/venue/venues HTTP/1.1" 200 1590
+INFO 2026-01-28 17:26:52,751 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:26:52,774 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:26:52,799 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:26:52,812 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:26:52,830 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+INFO 2026-01-28 17:27:10,448 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:27:10,465 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:27:12,960 basehttp "GET /api/admin/venue/venues HTTP/1.1" 200 1590
+INFO 2026-01-28 17:27:12,997 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:27:13,008 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:27:13,042 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:27:13,053 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:27:13,072 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+INFO 2026-01-28 17:27:15,709 basehttp "OPTIONS /api/admin/venue/venues HTTP/1.1" 200 0
+INFO 2026-01-28 17:27:15,733 basehttp "GET /api/admin/venue/venues HTTP/1.1" 200 1590
+INFO 2026-01-28 17:27:15,746 basehttp "OPTIONS /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 0
+INFO 2026-01-28 17:27:15,759 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:27:15,762 basehttp "OPTIONS /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 0
+INFO 2026-01-28 17:27:15,775 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:27:15,779 basehttp "OPTIONS /api/admin/seats?area_id=1 HTTP/1.1" 200 0
+INFO 2026-01-28 17:27:15,811 basehttp "GET /api/admin/seats?area_id=1 HTTP/1.1" 200 3822
+INFO 2026-01-28 17:27:15,819 basehttp "OPTIONS /api/admin/user/list HTTP/1.1" 200 0
+INFO 2026-01-28 17:27:15,900 basehttp "GET /api/admin/user/list HTTP/1.1" 200 1270
+INFO 2026-01-28 17:27:15,909 basehttp "OPTIONS /api/admin/log/logs HTTP/1.1" 200 0
+INFO 2026-01-28 17:27:15,918 basehttp "GET /api/admin/log/logs HTTP/1.1" 200 1774
+INFO 2026-01-28 17:27:18,870 basehttp "GET /api/admin/floor/floors?venue_id=1 HTTP/1.1" 200 224
+INFO 2026-01-28 17:27:18,886 basehttp "GET /api/admin/area/areas?floor_id=1 HTTP/1.1" 200 286
+INFO 2026-01-28 17:27:21,640 basehttp "OPTIONS /api/admin/venue/venues/1 HTTP/1.1" 200 0
+WARNING 2026-01-28 17:27:21,656 log Bad Request: /api/admin/venue/venues/1
+WARNING 2026-01-28 17:27:21,658 basehttp "DELETE /api/admin/venue/venues/1 HTTP/1.1" 400 58
+INFO 2026-01-28 17:27:33,766 basehttp "OPTIONS /api/admin/floor/floors/1 HTTP/1.1" 200 0
+WARNING 2026-01-28 17:27:33,774 log Bad Request: /api/admin/floor/floors/1
+WARNING 2026-01-28 17:27:33,775 basehttp "PUT /api/admin/floor/floors/1 HTTP/1.1" 400 83

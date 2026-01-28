@@ -30,7 +30,7 @@
     </nav>
 
     <div class="p-4 border-t border-slate-700">
-      <button class="w-full flex items-center gap-3 text-slate-300 hover:text-white transition-colors">
+      <button @click="$emit('logout')" class="w-full flex items-center gap-3 text-slate-300 hover:text-white transition-colors">
         <LogOut :size="20" />
         <span v-if="showSidebar">退出登录</span>
       </button>
@@ -51,5 +51,6 @@ defineProps<{
 defineEmits<{
   updateView: [view: string]
   toggleSidebar: []
+  logout: []
 }>()
 </script>

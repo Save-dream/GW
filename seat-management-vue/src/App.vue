@@ -21,6 +21,7 @@
         :current-view="currentView"
         :menu-items="menuItems"
         @update-view="setCurrentView"
+        @logout="handleLogout"
       />
 
       <!-- 主内容区 -->
@@ -405,11 +406,21 @@ const loadInitialData = async () => {
 
 // 检查登录状态
 const checkLoginStatus = () => {
-  // 强制在开发环境中设置模拟token，确保API请求携带认证信息
-  const mockToken = 'mock_token_for_development'
-  localStorage.setItem('access_token', mockToken)
+  // 使用真实的令牌
+  const realToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY5NTk4Nzk4LCJpYXQiOjE3Njk1OTE1OTgsImp0aSI6IjM0MDJjNmFkNjNhYTRjMzBiNDk2ZTYyOGVhYTBiNWFjIiwidXNlcl9pZCI6M30.VvyNYVV_P0Xrf79X_RaDa_rA3agsv2siSSu0CNunnJc'
+  localStorage.setItem('access_token', realToken)
   isLoggedIn.value = true
-  console.log('开发环境：已设置模拟token，确保API请求携带认证信息')
+  console.log('已设置真实token，确保API请求携带认证信息')
+}
+
+// 处理退出登录
+const handleLogout = () => {
+  // 清除本地存储的token
+  localStorage.removeItem('access_token')
+  localStorage.removeItem('refresh_token')
+  // 设置登录状态为false
+  isLoggedIn.value = false
+  console.log('已退出登录，清除token')
 }
 
 // 数据加载方法

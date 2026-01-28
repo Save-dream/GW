@@ -125,7 +125,7 @@ const mockData = {
 
 // 基础请求函数
 async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
-  // 生产环境中使用真实API请求
+  // 使用真实API请求
   const token = getToken();
   
   const headers = {
@@ -141,28 +141,6 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
     });
 
     if (!response.ok) {
-      // 在开发环境中，如果遇到401错误，使用模拟数据作为备份
-      if (process.env.NODE_ENV === 'development' && response.status === 401) {
-        console.warn('开发环境：API请求返回401未授权，使用模拟数据');
-        
-        // 根据URL返回对应的模拟数据
-        if (url.includes('/venue/venues')) {
-          return mockData.venues as T;
-        } else if (url.includes('/floor/floors')) {
-          return mockData.floors as T;
-        } else if (url.includes('/area/areas')) {
-          return mockData.areas as T;
-        } else if (url.includes('/seats')) {
-          return mockData.seats as T;
-        } else if (url.includes('/user/list')) {
-          return mockData.users as T;
-        } else if (url.includes('/log/logs')) {
-          return mockData.logs as T;
-        }
-        
-        return [] as T;
-      }
-      
       if (response.status === 401) {
         clearToken();
       }
@@ -173,28 +151,6 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
 
     return await response.json();
   } catch (error) {
-    // 在开发环境中，如果遇到网络错误，使用模拟数据作为备份
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('开发环境：API请求错误，使用模拟数据', error);
-      
-      // 根据URL返回对应的模拟数据
-      if (url.includes('/venue/venues')) {
-        return mockData.venues as T;
-      } else if (url.includes('/floor/floors')) {
-        return mockData.floors as T;
-      } else if (url.includes('/area/areas')) {
-        return mockData.areas as T;
-      } else if (url.includes('/seats')) {
-        return mockData.seats as T;
-      } else if (url.includes('/user/list')) {
-        return mockData.users as T;
-      } else if (url.includes('/log/logs')) {
-        return mockData.logs as T;
-      }
-      
-      return [] as T;
-    }
-    
     console.error('API request error:', error);
     throw error;
   }
